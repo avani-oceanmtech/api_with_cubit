@@ -1,3 +1,3 @@
 class ApiEndPoints {
-  final String users = 'users';
+  final String products = 'intermidiate_task.json';
 }
