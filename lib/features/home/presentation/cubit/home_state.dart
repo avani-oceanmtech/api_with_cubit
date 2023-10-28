@@ -7,4 +7,43 @@ abstract class HomeState extends Equatable {
   List<Object> get props => [];
 }
 
-class HomeInitial extends HomeState {}
+class HomeInitialState extends HomeState {
+  const HomeInitialState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class HomeLoadingState extends HomeState {
+  const HomeLoadingState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class HomeLoadedState extends HomeState {
+  final ProductDataEntity productDataEntity;
+
+  HomeLoadedState copyWith({
+    ProductDataEntity? productDataEntity,
+  }) {
+    return HomeLoadedState(
+      productDataEntity: productDataEntity ?? this.productDataEntity,
+    );
+  }
+
+  const HomeLoadedState({required this.productDataEntity});
+
+  @override
+  List<Object> get props => [];
+}
+
+class HomeErrorState extends HomeState {
+  final AppErrorType appErrorType;
+  final String errorMessage;
+
+  const HomeErrorState({required this.appErrorType, required this.errorMessage});
+
+  @override
+  List<Object> get props => [appErrorType, errorMessage];
+}
