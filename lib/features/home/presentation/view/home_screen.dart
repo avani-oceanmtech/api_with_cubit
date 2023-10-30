@@ -38,8 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
               primary: false,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                print(state.productDataEntity[index].address);
-                // return Text(state.productDataEntity[index].address);
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(state.productDataEntity[index].userProfile),
+                  ),
+                );
+                // Text(state.productDataEntity[index].address);
               },
             );
           } else if (state is HomeLoadingState) {
@@ -47,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             );
           } else {
-            print("========================else");
             return const SizedBox.shrink();
           }
         },

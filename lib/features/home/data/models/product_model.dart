@@ -4,7 +4,7 @@ import 'package:api_with_cubit/features/home/domain/entities/product_data_entity
 
 class ProductModel {
   int? status;
-  bool? success;
+  String? success;
   String message;
   List<ProductDataList> data;
 
@@ -17,7 +17,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         status: int.tryParse(json["status"].toString()),
-        success: bool.tryParse(json["success"].toString()),
+        success: json["success"] == "1" ? "true" : "false", //bool.tryParse(json["success"].toString()),
         message: json["message"],
         data: List<ProductDataList>.from(json["data"].map((x) => ProductDataList.fromJson(x))),
       );
