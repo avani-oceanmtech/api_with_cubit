@@ -1,13 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 import 'package:api_with_cubit/features/home/data/models/product_model.dart';
 
-// ignore: must_be_immutable
 class ProductDataEntity extends Equatable {
+  final String id;
+  final String userId;
   final String userName;
   final String userProfile;
   final String address;
+  final String contactNo;
+  final String websiteUrl;
   final String longitude;
   final String langitude;
   final String categoryName;
@@ -15,72 +17,65 @@ class ProductDataEntity extends Equatable {
   final String name;
   final String currency;
   final String minPrice;
+  final String maxPrice;
   final String discountPrice;
+  final String weight;
+  final String deliveryCharge;
   final String description;
+  final String condition;
   final String images;
+  final String negotiation;
   final SoldStatus soldStatus;
+  final String productType;
+  final UserSince userSince;
+  final String creatAt;
+  final String productSave;
+  final String productReport;
   final String averageRating;
-
+  final String totalUser;
   const ProductDataEntity({
-    this.userName = '',
-    this.userProfile = '',
-    this.address = '',
-    this.longitude = '',
-    this.langitude = '',
-    this.categoryName = '',
-    this.subCategoryName = '',
-    this.name = '',
-    this.currency = '',
-    this.minPrice = '',
-    this.discountPrice = '',
-    this.description = '',
-    this.images = '',
-    this.soldStatus = SoldStatus.UNSOLD,
-    this.averageRating = '',
+    required this.id,
+    required this.userId,
+    required this.userName,
+    required this.userProfile,
+    required this.address,
+    required this.contactNo,
+    required this.websiteUrl,
+    required this.longitude,
+    required this.langitude,
+    required this.categoryName,
+    required this.subCategoryName,
+    required this.name,
+    required this.currency,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.discountPrice,
+    required this.weight,
+    required this.deliveryCharge,
+    required this.description,
+    required this.condition,
+    required this.images,
+    required this.negotiation,
+    required this.soldStatus,
+    required this.productType,
+    required this.userSince,
+    required this.creatAt,
+    required this.productSave,
+    required this.productReport,
+    required this.averageRating,
+    required this.totalUser,
   });
-
-  ProductDataEntity copyWith({
-    String? userName,
-    String? userProfile,
-    String? address,
-    String? longitude,
-    String? langitude,
-    String? categoryName,
-    String? subCategoryName,
-    String? name,
-    String? currency,
-    String? minPrice,
-    String? discountPrice,
-    String? description,
-    String? images,
-    SoldStatus? soldStatus,
-    String? averageRating,
-  }) {
-    return ProductDataEntity(
-      userName: userName ?? this.userName,
-      userProfile: userProfile ?? this.userProfile,
-      address: address ?? this.address,
-      longitude: longitude ?? this.longitude,
-      langitude: langitude ?? this.langitude,
-      categoryName: categoryName ?? this.categoryName,
-      subCategoryName: subCategoryName ?? this.subCategoryName,
-      name: name ?? this.name,
-      currency: currency ?? this.currency,
-      minPrice: minPrice ?? this.minPrice,
-      discountPrice: discountPrice ?? this.discountPrice,
-      description: description ?? this.description,
-      images: images ?? this.images,
-      soldStatus: soldStatus ?? this.soldStatus,
-      averageRating: averageRating ?? this.averageRating,
-    );
-  }
 
   @override
   List<Object> get props {
     return [
+      id,
+      userId,
       userName,
       userProfile,
       address,
+      contactNo,
+      websiteUrl,
       longitude,
       langitude,
       categoryName,
@@ -88,11 +83,22 @@ class ProductDataEntity extends Equatable {
       name,
       currency,
       minPrice,
+      maxPrice,
       discountPrice,
+      weight,
+      deliveryCharge,
       description,
+      condition,
       images,
+      negotiation,
       soldStatus,
+      productType,
+      userSince,
+      creatAt,
+      productSave,
+      productReport,
       averageRating,
+      totalUser,
     ];
   }
 }

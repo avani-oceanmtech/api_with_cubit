@@ -1,19 +1,17 @@
-import 'dart:convert';
+// ignore_for_file: overridden_fields, annotate_overrides, constant_identifier_names
 
 import 'package:api_with_cubit/features/home/domain/entities/product_data_entity.dart';
-
-ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
 
 class ProductModel {
   int? status;
   bool? success;
-  String? message;
-  List<ProductData> data;
+  String message;
+  List<ProductDataList> data;
 
   ProductModel({
-    this.status,
-    this.success,
-    this.message,
+    required this.status,
+    required this.success,
+    required this.message,
     required this.data,
   });
 
@@ -21,99 +19,128 @@ class ProductModel {
         status: int.tryParse(json["status"].toString()),
         success: bool.tryParse(json["success"].toString()),
         message: json["message"],
-        data: json["data"] == null ? [] : List<ProductData>.from(json["data"]!.map((x) => ProductData.fromJson(x))),
+        data: List<ProductDataList>.from(json["data"].map((x) => ProductDataList.fromJson(x))),
       );
 }
 
-class ProductData {
-  List<ProductDataEntity>? productData;
-  int? pagination;
-  int? sold;
-  int? unSold;
+class ProductDataList {
+  List<ProductDataEntity> productData;
+  int pagination;
+  int sold;
+  int unSold;
 
-  ProductData({
-    this.productData,
-    this.pagination,
-    this.sold,
-    this.unSold,
+  ProductDataList({
+    required this.productData,
+    required this.pagination,
+    required this.sold,
+    required this.unSold,
   });
 
-  factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
-        productData: json["ProductData"] == null
-            ? []
-            : List<ProductDataEntity>.from(json["ProductData"]!.map((x) => ProductDetails.fromJson(x))),
+  factory ProductDataList.fromJson(Map<String, dynamic> json) => ProductDataList(
+        productData: List<ProductDataEntity>.from(json["ProductData"].map((x) => ProductDatum.fromJson(x))),
         pagination: json["pagination"],
         sold: json["Sold"],
         unSold: json["UnSold"],
       );
 }
 
-class ProductDetails {
-  String? id;
-  String? userId;
-  String? userName;
-  String? userProfile;
-  String? address;
-  String? contactNo;
-  String? websiteUrl;
-  String? longitude;
-  String? langitude;
-  String? categoryName;
-  String? subCategoryName;
-  String? name;
-  String? currency;
-  String? minPrice;
-  String? maxPrice;
-  String? discountPrice;
-  String? weight;
-  String? deliveryCharge;
-  String? description;
-  String? condition;
-  String? images;
-  String? negotiation;
-  SoldStatus? soldStatus;
-  String? productType;
-  UserSince? userSince;
-  String? creatAt;
-  String? productSave;
-  String? productReport;
-  String? averageRating;
-  String? totalUser;
+class ProductDatum extends ProductDataEntity {
+  final String id;
+  final String userId;
+  final String userName;
+  final String userProfile;
+  final String address;
+  final String contactNo;
+  final String websiteUrl;
+  final String longitude;
+  final String langitude;
+  final String categoryName;
+  final String subCategoryName;
+  final String name;
+  final String currency;
+  final String minPrice;
+  final String maxPrice;
+  final String discountPrice;
+  final String weight;
+  final String deliveryCharge;
+  final String description;
+  final String condition;
+  final String images;
+  final String negotiation;
+  final SoldStatus soldStatus;
+  final String productType;
+  final UserSince userSince;
+  final String creatAt;
+  final String productSave;
+  final String productReport;
+  final String averageRating;
+  final String totalUser;
 
-  ProductDetails({
-    this.id,
-    this.userId,
-    this.userName,
-    this.userProfile,
-    this.address,
-    this.contactNo,
-    this.websiteUrl,
-    this.longitude,
-    this.langitude,
-    this.categoryName,
-    this.subCategoryName,
-    this.name,
-    this.currency,
-    this.minPrice,
-    this.maxPrice,
-    this.discountPrice,
-    this.weight,
-    this.deliveryCharge,
-    this.description,
-    this.condition,
-    this.images,
-    this.negotiation,
-    this.soldStatus,
-    this.productType,
-    this.userSince,
-    this.creatAt,
-    this.productSave,
-    this.productReport,
-    this.averageRating,
-    this.totalUser,
-  });
+  const ProductDatum({
+    required this.id,
+    required this.userId,
+    required this.userName,
+    required this.userProfile,
+    required this.address,
+    required this.contactNo,
+    required this.websiteUrl,
+    required this.longitude,
+    required this.langitude,
+    required this.categoryName,
+    required this.subCategoryName,
+    required this.name,
+    required this.currency,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.discountPrice,
+    required this.weight,
+    required this.deliveryCharge,
+    required this.description,
+    required this.condition,
+    required this.images,
+    required this.negotiation,
+    required this.soldStatus,
+    required this.productType,
+    required this.userSince,
+    required this.creatAt,
+    required this.productSave,
+    required this.productReport,
+    required this.averageRating,
+    required this.totalUser,
+  }) : super(
+          id: id,
+          userId: userId,
+          userName: userName,
+          userProfile: userProfile,
+          address: address,
+          contactNo: contactNo,
+          websiteUrl: websiteUrl,
+          longitude: longitude,
+          langitude: langitude,
+          categoryName: categoryName,
+          subCategoryName: subCategoryName,
+          name: name,
+          currency: currency,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          discountPrice: discountPrice,
+          weight: weight,
+          deliveryCharge: deliveryCharge,
+          description: description,
+          condition: condition,
+          images: images,
+          negotiation: negotiation,
+          soldStatus: soldStatus,
+          productType: productType,
+          userSince: userSince,
+          creatAt: creatAt,
+          productSave: productSave,
+          productReport: productReport,
+          averageRating: averageRating,
+          totalUser: totalUser,
+        );
 
-  factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
+  factory ProductDatum.fromJson(Map<String, dynamic> json) => ProductDatum(
         id: json["Id"],
         userId: json["UserId"],
         userName: json["UserName"],
@@ -147,12 +174,10 @@ class ProductDetails {
       );
 }
 
-// ignore: constant_identifier_names
 enum SoldStatus { UNSOLD }
 
 final soldStatusValues = EnumValues({"Unsold": SoldStatus.UNSOLD});
 
-// ignore: constant_identifier_names
 enum UserSince { AUGUST_2022, JANUARY_2022, MAY_2022, MAY_2023, NOVEMBER_2022, OCTOBER_2022, SEPTEMBER_2022 }
 
 final userSinceValues = EnumValues({

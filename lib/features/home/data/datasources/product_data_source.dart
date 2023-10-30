@@ -27,7 +27,7 @@ class ProductDataSourceImpl extends ProductDataSource {
       final parseData = ProductModel.fromJson(productData);
 
       if (parseData.status == 200 && parseData.success == true && parseData.data.isNotEmpty) {
-        return Right(parseData.data.first.productData ?? []);
+        return Right(parseData.data.first.productData);
       } else if (parseData.status == 404) {
         return Left(
           AppError(
@@ -51,7 +51,7 @@ class ProductDataSourceImpl extends ProductDataSource {
         );
       } else {
         // saveError(params: ErrorParams(errType: ErrorLogType.api, url: paramsUrl, errMsg: parseData.message.toString()));
-        return Left(AppError(errorType: AppErrorType.api, errorMessage: parseData.message ?? ''));
+        return Left(AppError(errorType: AppErrorType.api, errorMessage: parseData.message));
       }
     } on UnauthorisedException catch (_) {
       return const Left(AppError(errorType: AppErrorType.unauthorised, errorMessage: "Un-Authorised"));

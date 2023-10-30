@@ -14,16 +14,18 @@ class _AbcScreenState extends State<AbcScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-          child: MaterialButton(
-        child: const Text("Next"),
-        onPressed: () {
-          Navigator.push(
+        child: MaterialButton(
+          child: const Text("Next"),
+          onPressed: () {
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const HomeScreen(),
-              ));
-        },
-      )),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

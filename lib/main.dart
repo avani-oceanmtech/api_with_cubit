@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'di/get_it.dart' as get_it;
 
 void main() {
-  unawaited(get_it.init());
+  WidgetsFlutterBinding.ensureInitialized();
+  mainFunction();
 
   runApp(const MyApp());
+}
+
+Future<void> mainFunction() async {
+  unawaited(get_it.init());
 }
 
 class MyApp extends StatelessWidget {
