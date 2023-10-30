@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:api_with_cubit/features/home/presentation/view/abc.dart';
+import 'package:api_with_cubit/features/home/presentation/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'di/get_it.dart' as get_it;
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const AbcScreen(),
+      home: const HomeScreen(),
     );
   }
 }

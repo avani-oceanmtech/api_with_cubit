@@ -25,11 +25,8 @@ class ProductDataSourceImpl extends ProductDataSource {
           'https://praticle-service.s3.ap-south-1.amazonaws.com/intermidiate_task.json',
           header: ApiConstatnts().headers);
       final parseData = ProductModel.fromJson(productData);
-      print("status code =============");
-      print(parseData.status);
-      print(parseData.success);
 
-      if (parseData.status == 200 && parseData.success == true && parseData.data.isNotEmpty) {
+      if (parseData.status == 200 && parseData.success == "true" && parseData.data.isNotEmpty) {
         return Right(parseData.data[0].productData);
       } else if (parseData.status == 404) {
         return Left(
@@ -53,8 +50,6 @@ class ProductDataSourceImpl extends ProductDataSource {
           ),
         );
       } else {
-        print("===========");
-        print(parseData.data.first.productData.first.address);
         // saveError(params: ErrorParams(errType: ErrorLogType.api, url: paramsUrl, errMsg: parseData.message.toString()));
         return Left(AppError(errorType: AppErrorType.api, errorMessage: parseData.message));
       }

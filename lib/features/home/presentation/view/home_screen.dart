@@ -33,17 +33,27 @@ class _HomeScreenState extends State<HomeScreen> {
         bloc: homeCubit,
         builder: (context, state) {
           if (state is HomeLoadedState) {
+            var productDetails = state.productDataEntity;
             return ListView.builder(
               itemCount: state.productDataEntity.length,
               primary: false,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    
+                  },
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(state.productDataEntity[index].userProfile),
+                    backgroundImage: NetworkImage(productDetails[index].images[0]),
                   ),
+                  title: Text(productDetails[index].categoryName),
+                  subtitle: Text(
+                    productDetails[index].subCategoryName,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: Text('${productDetails[index].minPrice} ${productDetails[index].currency}'),
                 );
-                // Text(state.productDataEntity[index].address);
               },
             );
           } else if (state is HomeLoadingState) {

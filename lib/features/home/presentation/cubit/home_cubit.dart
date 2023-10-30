@@ -14,17 +14,11 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit({required this.getProductData}) : super(const HomeLoadedState(productDataEntity: []));
 
   Future<void> loadInitialData() async {
-    print("====================================cubit");
     Either<AppError, List<ProductDataEntity>> response = await getProductData(NoParams());
     response.fold(
-      (error) {
-        print("errorrrrr");
-        print(error);
-      },
+      (error) {},
       (List<ProductDataEntity> data) {
-        print(data.length);
         emit(HomeLoadedState(productDataEntity: data));
-        // List
       },
     );
   }

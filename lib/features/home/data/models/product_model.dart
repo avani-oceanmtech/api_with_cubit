@@ -17,7 +17,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         status: int.tryParse(json["status"].toString()),
-        success: json["success"] == "1" ? "true" : "false", //bool.tryParse(json["success"].toString()),
+        success: json["success"] == "1" ? "true" : "false",
         message: json["message"],
         data: List<ProductDataList>.from(json["data"].map((x) => ProductDataList.fromJson(x))),
       );
