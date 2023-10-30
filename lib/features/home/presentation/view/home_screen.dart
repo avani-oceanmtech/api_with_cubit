@@ -1,6 +1,7 @@
 import 'package:api_with_cubit/di/get_it.dart';
 import 'package:api_with_cubit/features/home/presentation/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     homeCubit = getItInstance<HomeCubit>();
+    homeCubit.loadInitialData();
     super.initState();
   }
 
@@ -27,25 +29,29 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Center(
-        child: Text("hjsgdfjgfhy"),
+      body: BlocBuilder<HomeCubit, HomeState>(
+        bloc: homeCubit,
+        builder: (context, state) {
+          if (state is HomeLoadedState) {
+            return ListView.builder(
+              itemCount: state.productDataEntity.length,
+              primary: false,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                print(state.productDataEntity[index].address);
+                // return Text(state.productDataEntity[index].address);
+              },
+            );
+          } else if (state is HomeLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            print("========================else");
+            return const SizedBox.shrink();
+          }
+        },
       ),
-      //  BlocBuilder<HomeCubit, HomeState>(
-      //   bloc: homeCubit,
-      //   builder: (context, state) {
-      //     if (state is HomeLoadedState) {
-      //       return Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           Text(state.productDataEntity.first.address),
-      //           Text(state.productDataEntity.first.categoryName),
-      //         ],
-      //       );
-      //     } else {
-      //       return const SizedBox.shrink();
-      //     }
-      //   },
-      // ),
     );
   }
 }

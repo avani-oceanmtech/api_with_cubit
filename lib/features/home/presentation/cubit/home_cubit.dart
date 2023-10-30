@@ -11,14 +11,18 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final GetProductData getProductData;
 
-  HomeCubit({required this.getProductData}) : super(const HomeInitialState());
+  HomeCubit({required this.getProductData}) : super(const HomeLoadedState(productDataEntity: []));
 
   Future<void> loadInitialData() async {
+    print("====================================cubit");
     Either<AppError, List<ProductDataEntity>> response = await getProductData(NoParams());
-
     response.fold(
-      (error) {},
+      (error) {
+        print("errorrrrr");
+        print(error);
+      },
       (List<ProductDataEntity> data) {
+        print(data.length);
         emit(HomeLoadedState(productDataEntity: data));
         // List
       },
