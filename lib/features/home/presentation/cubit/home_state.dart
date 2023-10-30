@@ -22,10 +22,10 @@ class HomeLoadingState extends HomeState {
 }
 
 class HomeLoadedState extends HomeState {
-  final ProductDataEntity productDataEntity;
+  final List<ProductDataEntity> productDataEntity;
 
   HomeLoadedState copyWith({
-    ProductDataEntity? productDataEntity,
+    List<ProductDataEntity>? productDataEntity,
   }) {
     return HomeLoadedState(
       productDataEntity: productDataEntity ?? this.productDataEntity,

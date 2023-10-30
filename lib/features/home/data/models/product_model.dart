@@ -147,10 +147,12 @@ class ProductDetails {
       );
 }
 
+// ignore: constant_identifier_names
 enum SoldStatus { UNSOLD }
 
 final soldStatusValues = EnumValues({"Unsold": SoldStatus.UNSOLD});
 
+// ignore: constant_identifier_names
 enum UserSince { AUGUST_2022, JANUARY_2022, MAY_2022, MAY_2023, NOVEMBER_2022, OCTOBER_2022, SEPTEMBER_2022 }
 
 final userSinceValues = EnumValues({

@@ -9,11 +9,11 @@ import 'package:api_with_cubit/features/home/domain/entities/params/no_params_fi
 import 'package:api_with_cubit/features/home/domain/entities/product_data_entity.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class UserDataSource {
+abstract class ProductDataSource {
   Future<Either<AppError, List<ProductDataEntity>>> getProductData({required NoParams noParams});
 }
 
-class ProductDataSourceImpl extends UserDataSource {
+class ProductDataSourceImpl extends ProductDataSource {
   final ApiClient client;
 
   ProductDataSourceImpl({required this.client});
@@ -21,7 +21,9 @@ class ProductDataSourceImpl extends UserDataSource {
   @override
   Future<Either<AppError, List<ProductDataEntity>>> getProductData({required NoParams noParams}) async {
     try {
-      final productData = await client.get('https://praticle-service.s3.ap-south-1.amazonaws.com/intermidiate_task.json', header: ApiConstatnts().headers);
+      final productData = await client.get(
+          'https://praticle-service.s3.ap-south-1.amazonaws.com/intermidiate_task.json',
+          header: ApiConstatnts().headers);
       final parseData = ProductModel.fromJson(productData);
 
       if (parseData.status == 200 && parseData.success == true && parseData.data.isNotEmpty) {

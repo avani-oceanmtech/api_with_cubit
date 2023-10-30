@@ -18,7 +18,10 @@ class HomeCubit extends Cubit<HomeState> {
 
     response.fold(
       (error) {},
-      (List<ProductDataEntity> data) {},
+      (List<ProductDataEntity> data) {
+        emit(HomeLoadedState(productDataEntity: data));
+        // List
+      },
     );
   }
 }
